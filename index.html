@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio - Seyam KAZI | BTS SIO SLAM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #0f2044;
+      --navy-light: #162d5e;
+      --blue: #1a56db;
+      --blue-bright: #3b82f6;
+      --blue-glow: #60a5fa;
+      --accent: #38bdf8;
+      --white: #f8fafc;
+      --white-dim: #cbd5e1;
+      --white-muted: #64748b;
+      --card-bg: rgba(15,32,68,0.7);
+      --border: rgba(59,130,246,0.18);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── BACKGROUND ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(26,86,219,0.18) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(56,189,248,0.10) 0%, transparent 60%),
+        linear-gradient(180deg, #0a1628 0%, #0c1f45 50%, #0a1628 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 4rem;
+      background: rgba(10,22,40,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.25rem;
+      color: var(--white);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--white-dim);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ─── HERO ─── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(59,130,246,0.12);
+      border: 1px solid rgba(59,130,246,0.3);
+      border-radius: 999px;
+      padding: 0.35rem 1rem;
+      font-size: 0.8rem;
+      color: var(--blue-glow);
+      margin-bottom: 2rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    .hero-name {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      animation: fadeUp 0.9s 0.1s ease both;
+    }
+
+    .hero-name .last { color: var(--accent); }
+
+    .hero-title {
+      margin-top: 1.2rem;
+      font-size: clamp(1rem, 2.5vw, 1.3rem);
+      color: var(--white-dim);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      animation: fadeUp 0.9s 0.2s ease both;
+    }
+
+    .hero-desc {
+      max-width: 560px;
+      margin: 1.5rem auto 0;
+      font-size: 1rem;
+      color: var(--white-muted);
+      line-height: 1.7;
+      animation: fadeUp 0.9s 0.3s ease both;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 2.5rem;
+      animation: fadeUp 0.9s 0.4s ease both;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      padding: 0.8rem 2rem;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 0 24px rgba(26,86,219,0.35);
+    }
+
+    .btn-primary:hover {
+      background: var(--blue-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 0 36px rgba(59,130,246,0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--accent);
+      padding: 0.8rem 2rem;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: 1px solid rgba(56,189,248,0.4);
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-outline:hover {
+      background: rgba(56,189,248,0.08);
+      transform: translateY(-2px);
+    }
+
+    .hero-socials {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      margin-top: 2rem;
+      animation: fadeUp 0.9s 0.5s ease both;
+    }
+
+    .hero-socials a {
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      color: var(--white-dim);
+      font-size: 1rem;
+      text-decoration: none;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    .hero-socials a:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: rgba(56,189,248,0.08);
+    }
+
+    /* ─── SCROLL INDICATOR ─── */
+    .scroll-hint {
+      margin-top: 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--white-muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: fadeUp 0.9s 0.6s ease both;
+    }
+
+    .scroll-hint .mouse {
+      width: 22px; height: 36px;
+      border: 2px solid var(--white-muted);
+      border-radius: 11px;
+      display: flex;
+      justify-content: center;
+      padding-top: 6px;
+    }
+
+    .scroll-hint .wheel {
+      width: 3px; height: 7px;
+      background: var(--accent);
+      border-radius: 2px;
+      animation: scrollWheel 1.8s infinite;
+    }
+
+    @keyframes scrollWheel {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(10px); opacity: 0; }
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      position: relative;
+      z-index: 1;
+      padding: 6rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .section-line {
+      width: 48px;
+      height: 3px;
+      background: var(--blue);
+      border-radius: 2px;
+      margin-bottom: 3rem;
+    }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--white-dim);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      font-size: 0.98rem;
+    }
+
+    .about-text strong { color: var(--white); }
+
+    .about-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .info-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .info-card h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .info-card p { color: var(--white-dim); font-size: 0.92rem; }
+
+    /* BTS SIO explainer */
+    .bts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .bts-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      backdrop-filter: blur(8px);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .bts-card:hover {
+      border-color: rgba(59,130,246,0.5);
+      transform: translateY(-3px);
+    }
+
+    .bts-card.active { border-color: var(--blue); }
+
+    .bts-card-tag {
+      display: inline-block;
+      background: rgba(59,130,246,0.15);
+      color: var(--blue-glow);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.75rem;
+    }
+
+    .bts-card.active .bts-card-tag {
+      background: rgba(56,189,248,0.2);
+      color: var(--accent);
+    }
+
+    .bts-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .bts-card p {
+      font-size: 0.88rem;
+      color: var(--white-dim);
+      line-height: 1.65;
+    }
+
+    /* ─── SKILLS ─── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-category {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      backdrop-filter: blur(8px);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .skill-category:hover {
+      border-color: rgba(59,130,246,0.4);
+      transform: translateY(-3px);
+    }
+
+    .skill-category h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .skill-tag {
+      background: rgba(26,86,219,0.2);
+      border: 1px solid rgba(59,130,246,0.25);
+      color: var(--white-dim);
+      font-size: 0.82rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .skill-tag:hover {
+      background: rgba(59,130,246,0.3);
+      color: var(--white);
+    }
+
+    /* Languages */
+    .lang-bars { display: flex; flex-direction: column; gap: 0.75rem; }
+
+    .lang-item { display: flex; flex-direction: column; gap: 0.3rem; }
+
+    .lang-header { display: flex; justify-content: space-between; font-size: 0.85rem; }
+
+    .lang-bar-bg {
+      height: 6px;
+      background: rgba(59,130,246,0.12);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .lang-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--accent));
+      transition: width 1s ease;
+    }
+
+    /* ─── PARCOURS (Timeline) ─── */
+    .timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--blue) 0%, rgba(26,86,219,0.1) 100%);
+    }
+
+    .timeline-item {
+      display: flex;
+      gap: 2rem;
+      padding-bottom: 2.5rem;
+      position: relative;
+    }
+
+    .timeline-dot {
+      flex-shrink: 0;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: var(--navy-mid);
+      border: 2px solid var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 0.85rem;
+      z-index: 1;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .timeline-item:hover .timeline-dot {
+      background: var(--blue);
+      box-shadow: 0 0 20px rgba(26,86,219,0.5);
+    }
+
+    .timeline-content {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      flex: 1;
+      backdrop-filter: blur(8px);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .timeline-item:hover .timeline-content {
+      border-color: rgba(59,130,246,0.4);
+      transform: translateX(4px);
+    }
+
+    .timeline-date {
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-content h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .timeline-content .school {
+      font-size: 0.88rem;
+      color: var(--white-dim);
+      margin-bottom: 0.75rem;
+    }
+
+    .timeline-content p {
+      font-size: 0.88rem;
+      color: var(--white-muted);
+      line-height: 1.6;
+    }
+
+    /* ─── CERTIFICATIONS ─── */
+    .certif-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .certif-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: flex-start;
+      gap: 1.25rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .certif-card:hover {
+      border-color: rgba(59,130,246,0.45);
+      transform: translateY(-3px);
+    }
+
+    .certif-icon {
+      width: 52px; height: 52px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+
+    .certif-icon.pix { background: rgba(139,92,246,0.2); color: #a78bfa; }
+    .certif-icon.secnum { background: rgba(16,185,129,0.2); color: #34d399; }
+
+    .certif-info h4 {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .certif-info p {
+      font-size: 0.85rem;
+      color: var(--white-dim);
+      line-height: 1.5;
+    }
+
+    .certif-info .certif-date {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── STAGES ─── */
+    .stages-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .stage-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      backdrop-filter: blur(8px);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .stage-card:hover {
+      border-color: rgba(59,130,246,0.45);
+      transform: translateY(-3px);
+    }
+
+    .stage-company {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .stage-role {
+      font-size: 0.88rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .stage-card p {
+      font-size: 0.9rem;
+      color: var(--white-dim);
+      line-height: 1.65;
+    }
+
+    .stage-card ul {
+      margin-top: 0.5rem;
+      padding-left: 1.2rem;
+    }
+
+    .stage-card ul li {
+      font-size: 0.88rem;
+      color: var(--white-dim);
+      margin-bottom: 0.35rem;
+      line-height: 1.5;
+    }
+
+    .stage-meta {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      flex-shrink: 0;
+    }
+
+    .stage-date {
+      font-size: 0.8rem;
+      color: var(--white-muted);
+    }
+
+    .stage-location {
+      font-size: 0.8rem;
+      color: var(--white-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+      justify-content: flex-end;
+    }
+
+    .stage-tag {
+      display: inline-block;
+      background: rgba(59,130,246,0.15);
+      border: 1px solid rgba(59,130,246,0.25);
+      color: var(--blue-glow);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    /* ─── RÉALISATIONS ─── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--blue), var(--accent));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: rgba(59,130,246,0.45);
+      transform: translateY(-4px);
+    }
+
+    .project-card:hover::before { transform: scaleX(1); }
+
+    .project-number {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      font-weight: 700;
+    }
+
+    .project-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .project-context {
+      font-size: 0.82rem;
+      color: var(--white-muted);
+      font-style: italic;
+    }
+
+    .project-card p {
+      font-size: 0.88rem;
+      color: var(--white-dim);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .project-techs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .project-tech {
+      background: rgba(26,86,219,0.2);
+      border: 1px solid rgba(59,130,246,0.2);
+      color: var(--blue-glow);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+    }
+
+    .todo-note {
+      background: rgba(251,191,36,0.08);
+      border: 1px dashed rgba(251,191,36,0.3);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      font-size: 0.82rem;
+      color: #fbbf24;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* ─── VEILLE TECHNOLOGIQUE ─── */
+    .veille-intro {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(8px);
+    }
+
+    .veille-intro h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .veille-intro p {
+      font-size: 0.92rem;
+      color: var(--white-dim);
+      line-height: 1.7;
+    }
+
+    .veille-themes {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .veille-theme {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.75rem;
+      backdrop-filter: blur(8px);
+      transition: border-color 0.2s;
+    }
+
+    .veille-theme:hover { border-color: rgba(59,130,246,0.4); }
+
+    .veille-theme-num {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .veille-theme h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .veille-theme p {
+      font-size: 0.9rem;
+      color: var(--white-dim);
+      line-height: 1.7;
+    }
+
+    .veille-sources {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: var(--white-muted);
+    }
+
+    .veille-sources a {
+      color: var(--blue-glow);
+      text-decoration: none;
+      margin-right: 0.75rem;
+    }
+
+    .veille-sources a:hover { color: var(--accent); }
+
+    /* ─── CONTACT ─── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info p {
+      font-size: 0.95rem;
+      color: var(--white-dim);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--white-dim);
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover { color: var(--accent); }
+
+    .contact-link-icon {
+      width: 38px; height: 38px;
+      border-radius: 8px;
+      background: rgba(59,130,246,0.12);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: var(--blue-glow);
+      flex-shrink: 0;
+    }
+
+    .contact-form {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      backdrop-filter: blur(8px);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--white-dim);
+      letter-spacing: 0.04em;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue-bright);
+      background: rgba(59,130,246,0.05);
+    }
+
+    .form-group textarea { min-height: 110px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2.5rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--white-muted);
+      font-size: 0.85rem;
+    }
+
+    footer span { color: var(--accent); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .bts-grid { grid-template-columns: 1fr; }
+      .stage-card { grid-template-columns: 1fr; }
+      .stage-meta { text-align: left; }
+      section { padding: 4rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">Seyam <span>KAZI</span></div>
+  <ul class="nav-links">
+    <li><a href="#home">Accueil</a></li>
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#parcours">Parcours</a></li>
+    <li><a href="#stages">Stages</a></li>
+    <li><a href="#realisations">Réalisations</a></li>
+    <li><a href="#veille">Veille</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-badge">BTS SIO SLAM · 2ème Année</div>
+  <h1 class="hero-name">Seyam <span class="last">KAZI</span></h1>
+  <p class="hero-title">Étudiant Développeur · SLAM · Bobigny, 93</p>
+  <p class="hero-desc">
+    Passionné par le développement logiciel et les systèmes d'information,
+    je construis mes compétences en web, bases de données et algorithmique
+    dans le cadre de mon BTS SIO option SLAM.
+  </p>
+  <div class="hero-btns">
+    <a href="https://github.com/seyam26/portfolio/raw/main/CV_Portfolio.pdf" class="btn-primary" download><i class="fas fa-download"></i> &nbsp;Télécharger mon CV</a>
+    <a href="#contact" class="btn-outline">Me contacter</a>
+  </div>
+  <div class="hero-socials">
+    <a href="https://www.linkedin.com/in/seyam-kazi-792b80307" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="/cdn-cgi/l/email-protection#ff8c9a869e92948c94bf98929e9693d19c9092" title="Email"><i class="fas fa-envelope"></i></a>
+    <a href="https://github.com/" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+  </div>
+  <div class="scroll-hint">
+    <div class="mouse"><div class="wheel"></div></div>
+    <span>Défiler</span>
+  </div>
+</section>
+
+<!-- À PROPOS -->
+<section id="about" class="reveal">
+  <div class="section-label">Qui suis-je ?</div>
+  <h2 class="section-title">À propos de moi</h2>
+  <div class="section-line"></div>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        Bonjour, je m'appelle <strong>Seyam KAZI</strong>. Je suis étudiant en
+        <strong>2ème année de BTS SIO</strong> option <strong>SLAM</strong>
+        (Solutions Logicielles et Applications Métier) au Lycée Jules Ferry, à Bobigny.
+      </p>
+      <p>
+        Rigoureux et avec une forte capacité d'adaptation, je suis à l'aise
+        autant en équipe qu'en autonomie. Je m'intéresse particulièrement au
+        développement web, aux bases de données et à l'algorithmique.
+      </p>
+      <p>
+        Curieux et déterminé, je cherche à progresser continuellement et à
+        mettre mes compétences au service de projets concrets. Ce portfolio
+        présente mon parcours, mes réalisations et ma veille technologique.
+      </p>
+      <br>
+      <h3 style="font-family:'Syne',sans-serif;margin-bottom:1.5rem;font-size:1.3rem;">Qu'est-ce que le BTS SIO ?</h3>
+      <div class="bts-grid">
+        <div class="bts-card active">
+          <span class="bts-card-tag">Ma spécialité</span>
+          <h3>Option SLAM</h3>
+          <p>Solutions Logicielles et Applications Métier. Axée sur le développement logiciel, la gestion de bases de données et la conception de solutions applicatives adaptées aux entreprises.</p>
+        </div>
+        <div class="bts-card">
+          <span class="bts-card-tag">Autre option</span>
+          <h3>Option SISR</h3>
+          <p>Solutions d'Infrastructure Systèmes et Réseaux. Forme des experts en gestion et sécurisation des systèmes et réseaux informatiques au sein des organisations.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-info">
+      <div class="info-card">
+        <h4>Informations</h4>
+        <p>📍 Bobigny, Seine-Saint-Denis (93)</p>
+        <p style="margin-top:0.5rem">📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5f2c3a263e32342c341f38323e3633713c3032">[email&#160;protected]</a></p>
+        <p style="margin-top:0.5rem">📱 07 68 62 68 23</p>
+        <p style="margin-top:0.5rem">🎂 21 ans</p>
+      </div>
+      <div class="info-card">
+        <h4>Langues</h4>
+        <div class="lang-bars">
+          <div class="lang-item">
+            <div class="lang-header"><span>Français</span><span>Natif</span></div>
+            <div class="lang-bar-bg"><div class="lang-bar-fill" style="width:100%"></div></div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-header"><span>Bengali</span><span>Courant</span></div>
+            <div class="lang-bar-bg"><div class="lang-bar-fill" style="width:85%"></div></div>
+          </div>
+          <div class="lang-item">
+            <div class="lang-header"><span>Anglais</span><span>Intermédiaire</span></div>
+            <div class="lang-bar-bg"><div class="lang-bar-fill" style="width:55%"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <h4>Centres d'intérêt</h4>
+        <div class="skill-tags" style="margin-top:0.25rem">
+          <span class="skill-tag">📖 Lecture</span>
+          <span class="skill-tag">🎬 Cinéma</span>
+          <span class="skill-tag">💻 Informatique</span>
+          <span class="skill-tag">🎮 Jeux vidéos</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPÉTENCES -->
+<section id="competences" class="reveal">
+  <div class="section-label">Savoir-faire</div>
+  <h2 class="section-title">Mes compétences</h2>
+  <div class="section-line"></div>
+  <div class="skills-grid">
+    <div class="skill-category">
+      <h4><i class="fas fa-code"></i> Langages</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">PHP</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">SQL</span>
+        <span class="skill-tag">MySQL</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <h4><i class="fas fa-tools"></i> Outils & Frameworks</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">VS Code</span>
+        <span class="skill-tag">Visual Studio 2022</span>
+        <span class="skill-tag">NetBeans</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">WAMP</span>
+        <span class="skill-tag">Laravel</span>
+        <span class="skill-tag">Oracle VM Box</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <h4><i class="fas fa-server"></i> Systèmes & Réseaux</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Windows</span>
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">Configuration réseau</span>
+        <span class="skill-tag">Switches</span>
+        <span class="skill-tag">Virtualisation</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <h4><i class="fas fa-star"></i> Savoir-être</h4>
+      <div class="skill-tags">
+        <span class="skill-tag">Rigueur</span>
+        <span class="skill-tag">Adaptation</span>
+        <span class="skill-tag">Travail en équipe</span>
+        <span class="skill-tag">Curiosité</span>
+        <span class="skill-tag">Sens du détail</span>
+        <span class="skill-tag">À l'écoute</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARCOURS SCOLAIRE -->
+<section id="parcours" class="reveal">
+  <div class="section-label">Formation</div>
+  <h2 class="section-title">Mon parcours scolaire</h2>
+  <div class="section-line"></div>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"><i class="fas fa-graduation-cap"></i></div>
+      <div class="timeline-content">
+        <div class="timeline-date">2025 — 2026 · En cours</div>
+        <h3>BTS SIO — Option SLAM</h3>
+        <div class="school">Lycée Jules Ferry · Bobigny (93)</div>
+        <p>2ème année de BTS en cours. Approfondissement du développement web, bases de données, algorithmique et projets professionnels.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"><i class="fas fa-laptop-code"></i></div>
+      <div class="timeline-content">
+        <div class="timeline-date">2023 — 2024 · Obtenu</div>
+        <h3>BTS SIO — Option SLAM (1ère année)</h3>
+        <div class="school">CNED Poitiers</div>
+        <p>1ère année de BTS SIO obtenue à distance via le CNED. Découverte des fondamentaux du développement, des réseaux et des systèmes d'information.</p>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot"><i class="fas fa-school"></i></div>
+      <div class="timeline-content">
+        <div class="timeline-date">2022 — 2023</div>
+        <h3>Baccalauréat Général</h3>
+        <div class="school">Lycée Marcelin Berthelot</div>
+        <p>Spécialités Mathématiques et Physique-Chimie. Formation scientifique ayant développé rigueur logique et sens de l'analyse.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="reveal">
+  <div class="section-label">Attestations</div>
+  <h2 class="section-title">Mes certifications</h2>
+  <div class="section-line"></div>
+  <div class="certif-grid">
+
+    <div class="certif-card">
+      <div class="certif-icon pix"><i class="fas fa-certificate"></i></div>
+      <div class="certif-info">
+        <h4>Certification Pix</h4>
+        <p>Score <strong>405/895</strong> — Niveau <strong>Indépendant 2</strong>. Maîtrise des outils numériques, sécurité, collaboration et pratiques responsables.</p>
+        <span class="certif-date">16 Février 2026 · Lycée Jules Ferry</span>
+      </div>
+    </div>
+
+    <div class="certif-card">
+      <div class="certif-icon secnum"><i class="fas fa-shield-alt"></i></div>
+      <div class="certif-info">
+        <h4>MOOC SecNumAcadémie — ANSSI</h4>
+        <p>4 modules réussis : Panorama SSI <strong>86%</strong>, Authentification <strong>86%</strong>, Sécurité Internet <strong>88%</strong>, Poste de travail &amp; nomadisme <strong>80%</strong>.</p>
+        <span class="certif-date">22 Novembre 2024 · ANSSI</span>
+      </div>
+    </div>
+
+    <div class="certif-card">
+      <div class="certif-icon" style="background:rgba(234,179,8,0.15);color:#fbbf24"><i class="fas fa-shield-virus"></i></div>
+      <div class="certif-info">
+        <h4>MOOC EBIOS Risk Manager — ANSSI</h4>
+        <p>Introduction à la méthode EBIOS Risk Manager (3h). Analyse et gestion des risques de sécurité des systèmes d'information.</p>
+        <span class="certif-date">13 Novembre 2025 · Club EBIOS / ANSSI</span>
+      </div>
+    </div>
+
+    <div class="certif-card">
+      <div class="certif-icon" style="background:rgba(99,102,241,0.15);color:#a5b4fc"><i class="fas fa-users"></i></div>
+      <div class="certif-info">
+        <h4>Soft Skills &amp; Entretiens de recrutement</h4>
+        <p>Parcours Mylearn / Mission Locale de la LYR : repérer, évaluer et développer ses soft skills, préparer et conduire ses entretiens.</p>
+        <span class="certif-date">Mylearn · Mission Locale LYR</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- STAGES -->
+<section id="stages" class="reveal">
+  <div class="section-label">Expérience professionnelle</div>
+  <h2 class="section-title">Mes stages</h2>
+  <div class="section-line"></div>
+
+  <div class="todo-note" style="margin-bottom:2rem">
+    <i class="fas fa-info-circle"></i>
+    <span>⚠️ Ajouter le lien vers ton tableau de synthèse PDF une fois converti. N° candidat : <strong>2047469205</strong></span>
+  </div>
+
+  <div class="stages-grid">
+
+    <div class="stage-card">
+      <div>
+        <div class="stage-company">Insertec France Formation</div>
+        <div class="stage-role">Stage 2ème année — Développement web &amp; Administration système</div>
+        <ul>
+          <li>Installation de l'environnement de développement (PHP, MySQL, WampServer) et déploiement du CMS Dotclear avec virtual host</li>
+          <li>Transfert de fichiers via FileZilla (FTP) vers le serveur partagé de l'entreprise</li>
+          <li>Recherches techniques : NGINX, pare-feu (pfSense, Firebox), logiciels de comptabilité</li>
+          <li>Participation au paramétrage d'un lecteur réseau partagé (IseSI)</li>
+          <li>Création et développement du site WordPress de l'organisme : pages de formations (CAP), navigation, contenus pédagogiques (objectifs, modalités, financement)</li>
+          <li>Intégration HTML/CSS avancée : tableau responsive avec rowspan, identifiants Dokelio (codes SE_), fiches RNCP, documents embarqués (organigramme, livret d'accueil)</li>
+          <li>Site finalisé et prêt pour la campagne de recrutement 2026</li>
+        </ul>
+      </div>
+      <div class="stage-meta">
+        <span class="stage-tag">2ème année</span>
+        <span class="stage-date"><i class="far fa-calendar"></i> 8 Déc. 2025 – 30 Jan. 2026</span>
+        <span class="stage-location"><i class="fas fa-map-marker-alt"></i> Noisy-le-Grand</span>
+      </div>
+    </div>
+
+    <div class="stage-card">
+      <div>
+        <div class="stage-company">Insertec France Formation</div>
+        <div class="stage-role">Stage 1ère année — Maintenance, Réseaux &amp; Base de données</div>
+        <ul>
+          <li>Création d'une base de données (élèves, stagiaires, formations, formateurs)</li>
+          <li>Développement de pages PHP pour ajouter, modifier et supprimer des données (CRUD)</li>
+          <li>Administration via phpMyAdmin sous environnement WAMP</li>
+          <li>Installation et mise à niveau de postes informatiques</li>
+          <li>Configuration et gestion de switches réseau</li>
+        </ul>
+      </div>
+      <div class="stage-meta">
+        <span class="stage-tag">1ère année</span>
+        <span class="stage-date"><i class="far fa-calendar"></i> Juil. – Août 2024</span>
+        <span class="stage-location"><i class="fas fa-map-marker-alt"></i> Noisy-le-Grand</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RÉALISATIONS -->
+<section id="realisations" class="reveal">
+  <div class="section-label">Projets</div>
+  <h2 class="section-title">Mes réalisations</h2>
+  <div class="section-line"></div>
+
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-number">PPE · COURS</div>
+      <h3>THOLDI — Application web de réservation de containers</h3>
+      <div class="project-context">PPE2 · BTS SIO SLAM · 1ère &amp; 2ème année</div>
+      <p>Développement d'une application web de gestion de réservations de containers maritimes pour la société fictive THOLDI. Authentification sécurisée, saisie de réservations avec multi-containers, consultation et recherche par critères, génération de devis, changement d'état de réservation. Utilisation de sessions PHP, requêtes PDO paramétrées et validation de formulaires par regex.</p>
+      <div class="project-techs">
+        <span class="project-tech">PHP</span>
+        <span class="project-tech">MySQL</span>
+        <span class="project-tech">Bootstrap</span>
+        <span class="project-tech">PDO</span>
+        <span class="project-tech">HTML/CSS</span>
+        <span class="project-tech">Git</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-number">PPE · COURS</div>
+      <h3>THOLDI — Version Laravel (PHP MVC)</h3>
+      <div class="project-context">PPE2 bis · BTS SIO SLAM · 2ème année (sept–déc. 2025)</div>
+      <p>Refonte de l'application THOLDI en utilisant le framework Laravel sous Oracle VM VirtualBox (environnement Linux). Développement des vues Blade (consultation des réservations, saisie, récapitulatif), gestion des routes, contrôleurs et modèles Eloquent. Déploiement et gestion de l'environnement de développement sous Linux.</p>
+      <div class="project-techs">
+        <span class="project-tech">Laravel</span>
+        <span class="project-tech">PHP</span>
+        <span class="project-tech">Blade</span>
+        <span class="project-tech">MySQL</span>
+        <span class="project-tech">Linux</span>
+        <span class="project-tech">Oracle VM</span>
+        <span class="project-tech">NetBeans</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-number">PPE · COURS</div>
+      <h3>GestContainer — Application Windows Forms</h3>
+      <div class="project-context">PPE2 · BTS SIO SLAM · 2ème année</div>
+      <p>Développement d'une application client lourd de gestion de containers sous Windows Forms (C# / Visual Studio 2022). Interface graphique permettant la gestion des réservations, la recherche de containers et la consultation des données en lien avec une base de données relationnelle.</p>
+      <div class="project-techs">
+        <span class="project-tech">C# / .NET</span>
+        <span class="project-tech">Windows Forms</span>
+        <span class="project-tech">Visual Studio 2022</span>
+        <span class="project-tech">SQL Server</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-number">PPE · COURS</div>
+      <h3>SSO — Gestion d'incidents</h3>
+      <div class="project-context">PPE3 · BTS SIO SLAM · 2ème année (oct. 2025 – fév. 2025)</div>
+      <p>Projet axé sur la gestion des incidents informatiques : traitement des demandes d'assistance, suivi des tickets et orientation des incidents. Compétences mobilisées : répondre aux incidents, travailler en mode projet, mettre à disposition un service informatique.</p>
+      <div class="project-techs">
+        <span class="project-tech">Gestion de projet</span>
+        <span class="project-tech">Support SI</span>
+        <span class="project-tech">Ticketing</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-number">STAGE · 1ère ANNÉE</div>
+      <h3>Base de données &amp; interface PHP — Insertec France Formation</h3>
+      <div class="project-context">Stage Insertec · Noisy-le-Grand · Juil.–Août 2024</div>
+      <p>Conception et création d'une base de données relationnelle recensant les élèves, stagiaires, formations et formateurs. Développement d'une interface web en PHP permettant d'ajouter, modifier et supprimer des enregistrements (CRUD). Administration de la BDD via phpMyAdmin sous WAMP. Compétences : gérer le patrimoine informatique, répondre aux incidents, mettre à disposition un service.</p>
+      <div class="project-techs">
+        <span class="project-tech">PHP</span>
+        <span class="project-tech">MySQL</span>
+        <span class="project-tech">phpMyAdmin</span>
+        <span class="project-tech">WAMP</span>
+        <span class="project-tech">HTML/CSS</span>
+        <span class="project-tech">VS Code</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-number">STAGE · 2ème ANNÉE</div>
+      <h3>Environnement web &amp; CMS WordPress — Insertec France Formation</h3>
+      <div class="project-context">Stage 2ème année · Insertec · Noisy-le-Grand · Déc. 2025 – Jan. 2026</div>
+      <p>Déploiement d'un environnement web local et d'un CMS. Mise à jour et optimisation d'un site web WordPress existant (contenu, plugins, performance). Mise en place d'un outil de gestion de parc informatique pour recenser et gérer les équipements de l'organisation.</p>
+      <div class="project-techs">
+        <span class="project-tech">WordPress</span>
+        <span class="project-tech">CMS</span>
+        <span class="project-tech">Gestion de parc</span>
+        <span class="project-tech">HTML/CSS</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- VEILLE TECHNOLOGIQUE -->
+<section id="veille" class="reveal">
+  <div class="section-label">Curiosité & Innovation</div>
+  <h2 class="section-title">Veille technologique</h2>
+  <div class="section-line"></div>
+
+  <div class="veille-intro">
+    <h4>Qu'est-ce que la veille technologique ?</h4>
+    <p>La veille technologique est un processus de collecte, d'analyse et de diffusion d'informations sur les innovations et évolutions dans un domaine technique donné. Elle permet d'anticiper les changements, de rester à jour et de nourrir sa curiosité professionnelle.</p>
+  </div>
+
+  <div class="veille-intro" style="margin-top:1.5rem">
+    <h4>Méthodes de veille utilisées</h4>
+    <p>
+      <strong>Méthode Push :</strong> Alertes configurées sur Feedly avec les mots-clés <em>"Quantum Computing"</em>, <em>"Quantum Error Correction"</em>, <em>"Quantum Machine Learning"</em> — les informations arrivent automatiquement.<br><br>
+      <strong>Méthode Pull :</strong> Consultation régulière de Phys.org, ScienceDaily, Quantum Computing Report et flux RSS Feedly.
+    </p>
+  </div>
+
+  <p style="font-size:1.1rem;font-family:'Syne',sans-serif;font-weight:700;margin:2rem 0 1.5rem;color:var(--accent)">
+    Sujet : L'informatique quantique
+  </p>
+
+  <div class="veille-themes">
+
+    <div class="veille-theme">
+      <div class="veille-theme-num">Thème 1 — Origine &amp; Définition</div>
+      <h3>Qu'est-ce que l'informatique quantique ?</h3>
+      <p>
+        Le concept a été imaginé en <strong>1981</strong> par le physicien <strong>Richard Feynman</strong> (prix Nobel 1965) lors d'un congrès au MIT. L'idée : transposer les propriétés de la mécanique quantique à l'informatique.<br><br>
+        Contrairement aux <strong>bits</strong> classiques (0 ou 1), les <strong>qubits</strong> exploitent le <strong>principe de superposition</strong> pour prendre les deux valeurs simultanément. L'exemple concret : le spin quantique de l'électron, analogue d'une aiguille magnétique qui s'oriente dans n'importe quelle direction.<br><br>
+        En 2013, Seth Lloyd (MIT) postulait qu'un ordinateur à <strong>300 qubits</strong> pourrait cartographier toute l'information de l'univers depuis le Big Bang. Ces machines visent la modélisation moléculaire, le développement de nouveaux médicaments, ou encore la simulation du corps humain.
+      </p>
+      <div class="veille-sources">Sources : <a href="https://usbeketrica.com/" target="_blank">Usbek &amp; Rica</a> · Nature</div>
+    </div>
+
+    <div class="veille-theme">
+      <div class="veille-theme-num">Thème 2 — Actualités mondiales (Oct. 2025 – Mars 2026)</div>
+      <h3>Les avancées récentes dans le monde</h3>
+      <p>
+        <strong>Octobre 2025 :</strong> L'Inde (Maharashtra) signe un accord avec IonQ et Scandian AB pour créer une "Quantum Corridor". Déploiement du <strong>D-Wave Advantage2</strong> en Europe via cloud (Swiss Quantum Technology SA).<br><br>
+        <strong>Nov.–Déc. 2025 :</strong> L'Australie se positionne (Sydney Quantum Academy). La France investit <strong>1,8 milliard €</strong> dans son Plan quantique ; <strong>Pasqal</strong> (fondée par Alain Aspect, prix Nobel 2022) développe des processeurs à atomes neutres. Google annonce des applications réelles dans <strong>5 ans</strong> (batteries, médecine, matériaux).<br><br>
+        <strong>Fév. 2026 :</strong> Progrès majeurs en <strong>chiffrement quantique</strong> — les états quantiques étant impossibles à copier, des protocoles de sécurité inconcevables classiquement deviennent envisageables.<br><br>
+        <strong>Mars 2026 — IBM :</strong> Publication de la première architecture <em>Quantum-Centric Supercomputing</em> : l'ordinateur quantique comme accélérateur intégré aux supercalculateurs (comme un GPU). Des chercheurs d'IBM, Oxford et ETH Zurich simulent une molécule "half-Möbius", impossible seul pour le classique. IBM vise des machines tolérantes aux pannes d'ici 3 ans.
+      </p>
+      <div class="veille-sources">Sources : Times of India · Barron's · Daily Telegraph · PYMNTS.com · IBM Research</div>
+    </div>
+
+    <div class="veille-theme">
+      <div class="veille-theme-num">Thème 3 — Enjeux &amp; Impact sur l'informatique</div>
+      <h3>Sécurité, chiffrement et vision hybride</h3>
+      <p>
+        L'informatique quantique entre en 2026 dans une <strong>phase de démonstration d'utilité concrète</strong> : les performances dépassent progressivement les promesses de laboratoire.<br><br>
+        <strong>Chiffrement post-quantique :</strong> Les algorithmes classiques (RSA, AES) pourraient être cassés par un ordinateur quantique puissant. La course à la cryptographie post-quantique est lancée — un enjeu direct pour la cybersécurité des entreprises et des États.<br><br>
+        <strong>Capacité de stockage :</strong> Théoriquement, il est possible de stocker une quantité d'informations équivalente à deux ou trois fois le nombre de planètes de l'univers — hors de portée pour tout ordinateur classique.<br><br>
+        <strong>Architecture hybride :</strong> L'avenir n'est pas un ordinateur quantique isolé, mais une intégration aux infrastructures HPC existantes — exactement comme les GPU ont transformé l'intelligence artificielle.
+      </p>
+      <div class="veille-sources">Sources : <a href="https://www.nature.com/" target="_blank">Nature</a> · IBM Research · Quantum Computing Report</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="reveal">
+  <div class="section-label">Prenons contact</div>
+  <h2 class="section-title">Me contacter</h2>
+  <div class="section-line"></div>
+
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Une question ? Un projet ?</h3>
+      <p>N'hésitez pas à me contacter par email ou via LinkedIn. Je répondrai dans les meilleurs délais.</p>
+      <div class="contact-links">
+        <a href="mailto:seyamksk@gmail.com" class="contact-link">
+          <div class="contact-link-icon"><i class="fas fa-envelope"></i></div>
+          seyamksk@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/seyam-kazi-792b80307" target="_blank" class="contact-link">
+          <div class="contact-link-icon"><i class="fab fa-linkedin-in"></i></div>
+          linkedin.com/in/seyam-kazi-792b80307
+        </a>
+        <a href="tel:0768626823" class="contact-link">
+          <div class="contact-link-icon"><i class="fas fa-phone"></i></div>
+          07 68 62 68 23
+        </a>
+        <a href="https://github.com/seyam26/portfolio" target="_blank" class="contact-link">
+          <div class="contact-link-icon"><i class="fab fa-github"></i></div>
+          github.com/seyam26/portfolio
+        </a>
+      </div>
+    </div>
+
+    <div class="contact-form">
+      <div class="form-group">
+        <label>Nom complet</label>
+        <input type="text" placeholder="Votre nom"/>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="votre@email.com"/>
+      </div>
+      <div class="form-group">
+        <label>Sujet</label>
+        <input type="text" placeholder="Sujet de votre message"/>
+      </div>
+      <div class="form-group">
+        <label>Message</label>
+        <textarea placeholder="Votre message..."></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%;text-align:center;padding:0.9rem">
+        <i class="fas fa-paper-plane"></i> &nbsp;Envoyer
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Seyam KAZI</span> · Portfolio BTS SIO SLAM · Bobigny</p>
+  <p style="margin-top:0.5rem;font-size:0.78rem">Lycée Jules Ferry · E5 BTS SIO</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Active nav link
+  const sections = document.querySelectorAll('section[id]');
+  const nav
